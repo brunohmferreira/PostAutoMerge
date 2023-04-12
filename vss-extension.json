@@ -1,0 +1,35 @@
+{
+    "manifestVersion": 1,
+    "id": "gitautomergedecorator",
+    "name": "Git: auto merge",
+    "version": "1.0.0",
+    "publisher": "BrunoHenriqueMendesFerreira",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Merges the current branch with the master branch automatically",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "contributions": [
+        {
+            "id": "git-auto-merge-task",
+            "type": "ms.azure-pipelines.pipeline-decorator",
+            "targets": [
+                "ms.azure-release-pipelines-agent-job.post-job-tasks"
+            ],
+            "properties": {
+                "template": "git-auto-merge-decorator.yml"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "git-auto-merge-decorator.yml",
+            "addressable": true,
+            "contentType": "text/plain"
+        }
+    ]
+}
