@@ -41,7 +41,6 @@ steps:
         if(-not $?){
           echo "##[error] Merge incomplete, aborting"
           echo "##vso[task.logissue type=error] Fail to merge from $(Build.SourceBranchName) to master"
-          echo "##vso[task.logissue type=error] Fail to merge from $(Build.SourceVersion) to master"
 
           echo "##[section]Starting: Clean folder"
 
@@ -49,7 +48,17 @@ steps:
           dir "$(System.DefaultWorkingDirectory)"
 
           cd "$(System.DefaultWorkingDirectory)"
-          rm -r -force _git
+          
+          if ('$(Agent.OS)' -eq 'Linux')
+          {
+            echo "Agent Linux"
+            rm -rf _git
+          }
+          else
+          {
+            echo "Agent Windows"
+            rm -r -force _git
+          }
 
           echo "after cleaning"
           dir "$(System.DefaultWorkingDirectory)"
@@ -64,7 +73,7 @@ steps:
         git push
 
         if($?){
-          echo "##vso[task.complete result=Succeeded;] master updated with success"
+          echo "master updated with success"
         }
 
         echo "##[section]Finishing: Auto merge"
@@ -76,7 +85,17 @@ steps:
         dir "$(System.DefaultWorkingDirectory)"
 
         cd "$(System.DefaultWorkingDirectory)"
-        rm -r -force _git
+
+        if ('$(Agent.OS)' -eq 'Linux')
+        {
+          echo "Removing folder in Linux"
+          rm -rf _git
+        }
+        else
+        {
+          echo "Removing folder in Windows"
+          rm -r -force _git
+        }
 
         echo "after cleaning"
         dir "$(System.DefaultWorkingDirectory)"

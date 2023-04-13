@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "gitautomergedecorator",
     "name": "Git: auto merge",
-    "version": "1.0.0",
+    "version": "1.7.0",
     "publisher": "BrunoHenriqueMendesFerreira",
     "targets": [
         {
