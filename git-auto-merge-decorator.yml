@@ -1,7 +1,7 @@
 steps:
 - ${{ if and(eq(variables['Decorator.GitAutoMerge.Enabled'], True), eq(variables['System.StageDisplayName'], 'PRD')) }}:
   - task: PowerShell@2
-    displayName: 'Git: Auto Merge - step: clone repository (injected from decorator)'
+    displayName: 'Clone repository [Git: Auto Merge](injected from decorator)'
     inputs:
       workingDirectory: '$(System.DefaultWorkingDirectory)'
       targetType: 'inline'
@@ -23,7 +23,7 @@ steps:
         echo "Cloned, Working Dir changed for '$(Build.Repository.Name)'"
 
   - task: PowerShell@2
-    displayName: 'Git: Auto Merge - step: auto merge (injected from decorator)'
+    displayName: 'Auto merge [Git: Auto Merge](injected from decorator)'
     inputs:
       workingDirectory: '$(System.DefaultWorkingDirectory)'
       targetType: 'inline'
@@ -60,7 +60,7 @@ steps:
         }
 
   - task: PowerShell@2
-    displayName: 'Git: Auto Merge - step: clean folder (injected from decorator)'
+    displayName: 'Clean folder [Git: Auto Merge](injected from decorator)'
     condition: succeededOrFailed()
     inputs:
       workingDirectory: '$(System.DefaultWorkingDirectory)'
